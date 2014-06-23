@@ -9,4 +9,18 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-PogApp::Application.config.secret_key_base = 'e402c95faa1cdf0266d43ce5f29b48543a09877fce7fcd5efe93f5e4eb0401f44f568291980e415e5d42575c0feaf8ff5c843931a8b996be94dc1792f4506847'
+require 'securerandom'
+
+def secure_token
+	token_file = Rails.root.join('.secret')
+	if File.exist?(token_file)
+		File.read(token_file).chomp
+	else
+		token = SecureRandom.hex(64)
+		File.write(token_file, token)
+		token
+	end
+end
+
+
+PogApp::Application.config.secret_key_base = secure_token
