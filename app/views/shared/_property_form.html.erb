@@ -1,0 +1,11 @@
+<%= form_for(@property) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address, 	placeholder: "Protect a new property..." %>
+    <%= f.text_field :city, 		placeholder: "City" %>
+    <%= f.text_field :state, 		placeholder: "State" %>
+    <%= f.text_field :zip, 			placeholder: "Zip" %>
+  </div>
+  <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+<% end %>

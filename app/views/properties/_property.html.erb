@@ -1,0 +1,14 @@
+<li>
+  <span class="content"><%= property.address 	%></span>
+  <span class="content"><%= property.city 		%></span>
+  <span class="content"><%= property.state 		%></span>
+  <span class="content"><%= property.zip 			%></span>
+  <span class="timestamp">
+    Updated <%= time_ago_in_words(property.updated_at) %> ago.
+  </span>
+  <% if current_user?(property.user) %>
+    <%= link_to "delete", property, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: property.address %>
+  <% end %>
+</li>
