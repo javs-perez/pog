@@ -7,6 +7,8 @@
   <span class="content"><%= document.cfn %></span>
   <span class="content"><%= document.county %></span>
   <span class="content"><%= document.amount %></span>
+  <span class="content"><%= document.record %></span>
+  <span class="content"><%= image_tag document.record.url(:thumb) %></span>
   <span class="timestamp">
     Created <%= time_ago_in_words(document.created_at) %> ago.
   </span>

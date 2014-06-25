@@ -1,4 +1,4 @@
-<%= form_for(@document) do |f| %>
+<%= form_for(@document, :html => { :multipart => true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <h3>Add a Document!</h3>
@@ -10,6 +10,7 @@
     <%= f.text_field :cfn, 						placeholder: "Clerk File Number" %>
     <%= f.text_field :county, 				placeholder: "County of Record" %>
     <%= f.text_field :amount, 				placeholder: "Amount" %>
+    <%= f.file_field :record %>
     <%= f.hidden_field :property_id, value: @property.id %>
   </div>
   <%= f.submit "Create", class: "btn btn-large btn-primary" %>

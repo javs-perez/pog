@@ -7,8 +7,6 @@ class DocumentsController < ApplicationController
       flash[:success] = "Document created!"
       redirect_to root_url
     else
-    	p @document.errors
-    	p document_params
       redirect_to root_url
     end
   end
@@ -23,6 +21,8 @@ class DocumentsController < ApplicationController
   private
 
     def document_params
-      params.require(:document).permit(:toi, :date_signed, :date_recorded, :party1, :party2, :cfn, :county, :amount, :property_id)
+      params.require(:document).permit(:toi, :date_signed, :date_recorded, 
+                                       :party1, :party2, :cfn, :county, 
+                                       :amount, :property_id, :record)
     end
 end
