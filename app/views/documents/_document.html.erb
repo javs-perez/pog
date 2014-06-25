@@ -1,15 +1,47 @@
-<li>
-  <span class="content"><%= document.toi %></span>
-  <span class="content"><%= document.date_recorded %></span>
-  <span class="content"><%= document.date_signed %></span>
-  <span class="content"><%= document.party1 %></span>
-  <span class="content"><%= document.party2 %></span>
-  <span class="content"><%= document.cfn %></span>
-  <span class="content"><%= document.county %></span>
-  <span class="content"><%= document.amount %></span>
-  <span class="content"><%= document.record %></span>
-  <span class="content"><%= image_tag document.record.url(:thumb) %></span>
+<div style="float: left; width: 100%;">
+<div style="float: left; width: 33%;">
+  <ul>
+    <li>
+      <span class="content">Type of Instrument</span>
+      <span class="content">Date Recorded</span>
+      <span class="content">Date Signed</span>
+      <span class="content">Party</span>
+      <span class="content">Party</span>
+      <span class="content">Clerk File Number</span>
+      <span class="content">County of Record</span>
+      <span class="content">Amount($)</span>
+    </li>
+  </ul>
+</div>
+<div style="float: left; width: 33%;">
+  <ul>
+    <li>
+      <span class="content"><%= document.toi.upcase         %></span>
+      <span class="content"><%= document.date_recorded      %></span>
+      <span class="content"><%= document.date_signed        %></span>
+      <span class="content"><%= document.party1.titleize %></span>
+      <span class="content"><%= document.party2.titleize %></span>
+      <span class="content"><%= document.cfn                %></span>
+      <span class="content"><%= document.county.titleize  %></span>
+      <span class="content"><%= number_to_currency(document.amount)  %></span>
+    </li>
+  </ul>
+</div>
+<div style="float: right; width: 33%;"
+  <ul>
+    <li>
+      <span class="content"><%= link_to "Download document", document.record.url(:original)%></span>
+    </li>
+  </ul>
+</div>
+<div style="float: left; width: 100%;">
   <span class="timestamp">
     Created <%= time_ago_in_words(document.created_at) %> ago.
   </span>
-</li>
+  <% if current_user.admin? && !current_user?(@user) %>
+    <%= link_to "delete", document, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: document.toi.upcase %>
+  <% end %>
+</div>
+</div>

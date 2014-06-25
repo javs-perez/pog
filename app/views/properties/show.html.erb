@@ -3,14 +3,16 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= @property.address %>
-        <%= @property.city    %>
-        <%= @property.state   %>
-        <%= @property.zip     %>
+        <%= @property.address         %></br>
+        <%= @property.city.capitalize %></br>
+        <%= @property.state.upcase    %>
+        <%= @property.zip             %>
       </h1>
     </section>
     <section>
-      <%= render 'shared/document_form' %>
+      <% if current_user.admin? && !current_user?(@user) %>
+        <%= render 'shared/document_form' %>
+      <% end %>
     </section>
   </aside>
   <div class="span8">

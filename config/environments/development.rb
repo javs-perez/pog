@@ -27,5 +27,5 @@ PogApp::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  Paperclip.options[:command_path] = "/usr/bin/convert/"
+  Paperclip.options[:command_path] = "/usr/bin"
 end

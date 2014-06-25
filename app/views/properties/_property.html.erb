@@ -1,8 +1,8 @@
 <li>
   <!-- <span class="content"><%= property.address 	%></span> -->
   <%= link_to property.address, property %>
-  <span class="content"><%= property.city 		%></span>
-  <span class="content"><%= property.state 		%></span>
+  <span class="content"><%= property.city.split.map(&:capitalize).join(' ')	%></span>
+  <span class="content"><%= property.state.upcase 		%></span>
   <span class="content"><%= property.zip 			%></span>
   <span class="timestamp">
     Updated <%= time_ago_in_words(property.updated_at) %> ago.

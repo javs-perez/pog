@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :signed_in_user
+  before_action :admin_user,    only: :destroy
 
   def create
   	@document = Document.new(document_params)
@@ -16,6 +17,9 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    Document.find(params[:id]).destroy
+    flash[:sucess] = "Document Deleted"
+    redirect_to root_url
   end
 
   private
@@ -24,5 +28,9 @@ class DocumentsController < ApplicationController
       params.require(:document).permit(:toi, :date_signed, :date_recorded, 
                                        :party1, :party2, :cfn, :county, 
                                        :amount, :property_id, :record)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end

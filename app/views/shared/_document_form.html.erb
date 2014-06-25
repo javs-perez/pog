@@ -3,15 +3,15 @@
   <div class="field">
     <h3>Add a Document!</h3>
     <%= f.text_field :toi, 						placeholder: "Type of Instrument" %>
-    <%= f.date_field :date_signed, 		placeholder: "Date Signed" %>
-    <%= f.date_field :date_recorded, 	placeholder: "Date Recorded" %>
-    <%= f.text_field :party1, 				placeholder: "1st Party" %>
-    <%= f.text_field :party2, 				placeholder: "2nd Party" %>
-    <%= f.text_field :cfn, 						placeholder: "Clerk File Number" %>
-    <%= f.text_field :county, 				placeholder: "County of Record" %>
-    <%= f.text_field :amount, 				placeholder: "Amount" %>
-    <%= f.file_field :record %>
-    <%= f.hidden_field :property_id, value: @property.id %>
+    <%= f.date_field :date_signed, 		placeholder: "Date Signed (mm/dd/yyyy)"%>
+    <%= f.date_field :date_recorded, 	placeholder: "Date Recorded (mm/dd/yyyy)"%>
+    <%= f.text_field :party1, 				placeholder: "1st Party"          %>
+    <%= f.text_field :party2, 				placeholder: "2nd Party"          %>
+    <%= f.text_field :cfn, 						placeholder: "Clerk File Number"  %>
+    <%= f.text_field :county, 				placeholder: "County of Record"   %>
+    <%= f.text_field :amount, 				placeholder: "Amount"             %>
+    <%= f.file_field :record                                            %>
+    <%= f.hidden_field :property_id,  value:       @property.id         %>
   </div>
   <%= f.submit "Create", class: "btn btn-large btn-primary" %>
 <% end %>
