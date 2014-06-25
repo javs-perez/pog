@@ -1,0 +1,13 @@
+<li>
+  <span class="content"><%= document.toi %></span>
+  <span class="content"><%= document.date_recorded %></span>
+  <span class="content"><%= document.date_signed %></span>
+  <span class="content"><%= document.party1 %></span>
+  <span class="content"><%= document.party2 %></span>
+  <span class="content"><%= document.cfn %></span>
+  <span class="content"><%= document.county %></span>
+  <span class="content"><%= document.amount %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(document.created_at) %> ago.
+  </span>
+</li>

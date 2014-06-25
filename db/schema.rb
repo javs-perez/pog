@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140623233613) do
+ActiveRecord::Schema.define(version: 20140624195422) do
+
+  create_table "documents", force: true do |t|
+    t.string   "toi"
+    t.date     "date_signed"
+    t.date     "date_recorded"
+    t.string   "party1"
+    t.string   "party2"
+    t.string   "cfn"
+    t.string   "county"
+    t.integer  "amount"
+    t.integer  "property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "documents", ["property_id", "cfn"], name: "index_documents_on_property_id_and_cfn"
 
   create_table "properties", force: true do |t|
     t.string   "address"

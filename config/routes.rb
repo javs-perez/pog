@@ -1,7 +1,9 @@
 PogApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy] 
-  resources :properties, only: [:create, :destroy]
+  resources :properties, only: [:create, :destroy, :show]
+  resources :documents, only: [:create, :destroy, :show]
+
   root 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'

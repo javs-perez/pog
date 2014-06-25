@@ -18,6 +18,13 @@ class PropertiesController < ApplicationController
     redirect_to root_url
   end
 
+  def show
+    @property = Property.find(params[:id])
+    @documents = @property.documents.paginate(page: params[:page])
+    @document = Document.new
+  end
+
+
   private
 
     def property_params

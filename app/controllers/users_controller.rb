@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     @properties = @user.properties.paginate(page: params[:page])
+    @property = @user.properties.find_by(params[:id])
   end
 
   def destroy

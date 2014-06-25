@@ -1,5 +1,7 @@
 class Property < ActiveRecord::Base
 	belongs_to :user
+	has_many 	 :documents
+
 	default_scope -> { order('updated_at ASC') }
 	validates :user_id, presence: true
 	validates :address, presence: true, length: { maximum: 140 }

@@ -1,0 +1,28 @@
+<% provide(:title, @property.address) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @property.address %>
+        <%= @property.city    %>
+        <%= @property.state   %>
+        <%= @property.zip     %>
+      </h1>
+    </section>
+    <section>
+      <%= render 'shared/document_form' %>
+    </section>
+  </aside>
+  <div class="span8">
+    <% if @property.documents.any? %>
+      <h3>Documents (<%= @property.documents.count %>)</h3>
+      <ol class="properties">
+        <%= render @documents %>
+      </ol>
+      <%= will_paginate @documents %>
+    <% else %>
+    	<h3>There are no documents in this property at this time.</h3>
+    <% end %>
+  </div>
+</div>
+
