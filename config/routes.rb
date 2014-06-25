@@ -1,4 +1,6 @@
 PogApp::Application.routes.draw do
+  resources :analysts
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy] 
   resources :properties, only: [:create, :destroy, :show]

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625015706) do
+ActiveRecord::Schema.define(version: 20140625193904) do
+
+  create_table "analysts", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "analyst"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+  end
+
+  add_index "analysts", ["email"], name: "index_analysts_on_email", unique: true
 
   create_table "documents", force: true do |t|
     t.string   "toi"
