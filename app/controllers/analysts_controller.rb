@@ -69,6 +69,6 @@ class AnalystsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def analyst_params
-      params.require(:analyst).permit(:name, :email, :analyst)
+      params.require(:analyst).permit(:name, :email, :analyst, :password, :password_confirmation)
     end
 end

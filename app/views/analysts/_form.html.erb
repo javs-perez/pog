@@ -1,29 +1,30 @@
-<%= form_for(@analyst) do |f| %>
-  <% if @analyst.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@analyst.errors.count, "error") %> prohibited this analyst from being saved:</h2>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@analyst) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-      <ul>
-      <% @analyst.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :analyst %><br>
+      <%= f.check_box :analyst %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create an Analyst", class: "btn btn-large btn-primary" %>
+    </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :analyst %><br>
-    <%= f.check_box :analyst %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
