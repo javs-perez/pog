@@ -26,15 +26,13 @@ class AnalystsController < ApplicationController
   def create
     @analyst = Analyst.new(analyst_params)
 
-    respond_to do |format|
       if @analyst.save
-        format.html { redirect_to @analyst, notice: 'Analyst was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @analyst }
+        sign_in @analyst
+        flash[:success] = "Start Protecting Properties"
+        redirect_to @analyst
       else
-        format.html { render action: 'new' }
-        format.json { render json: @analyst.errors, status: :unprocessable_entity }
+        render action: 'new'
       end
-    end
   end
 
   # PATCH/PUT /analysts/1
