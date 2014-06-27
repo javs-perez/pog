@@ -9,6 +9,7 @@
           <% if signed_in? || analyst_signed_in? %>
             <% if analyst_signed_in? %>
               <li><%= link_to "Users", users_path %></li>
+              <li><%= link_to "Analysts", analysts_path %></li>
             <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

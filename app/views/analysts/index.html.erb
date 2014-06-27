@@ -1,31 +1,10 @@
-<h1>Listing analysts</h1>
+<% provide(:title, 'All Analysts') %>
+<h1>All Analysts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Analyst</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%= will_paginate %>
 
-  <tbody>
-    <% @analysts.each do |analyst| %>
-      <tr>
-        <td><%= analyst.name %></td>
-        <td><%= analyst.email %></td>
-        <td><%= analyst.analyst %></td>
-        <td><%= link_to 'Show', analyst %></td>
-        <td><%= link_to 'Edit', edit_analyst_path(analyst) %></td>
-        <td><%= link_to 'Destroy', analyst, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul class="users">
+  <%= render @analysts%>
+</ul>
 
-<br>
-
-<%= link_to 'New Analyst', new_analyst_path %>
+<%= will_paginate %>

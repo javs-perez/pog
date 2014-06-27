@@ -1,56 +1,43 @@
 class AnalystsController < ApplicationController
   before_action :set_analyst, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_analyst, only: [:index, :edit, :update]
+  before_action :correct_analyst, only: [:edit, :update]
 
-  # GET /analysts
-  # GET /analysts.json
   def index
-    @analysts = Analyst.all
+    @analysts = Analyst.paginate(page: params[:page])
   end
 
-  # GET /analysts/1
-  # GET /analysts/1.json
   def show
   end
 
-  # GET /analysts/new
   def new
     @analyst = Analyst.new
   end
 
-  # GET /analysts/1/edit
   def edit
   end
 
-  # POST /analysts
-  # POST /analysts.json
   def create
     @analyst = Analyst.new(analyst_params)
 
-      if @analyst.save
-        sign_in @analyst
-        flash[:success] = "Start Protecting Properties"
-        redirect_to @analyst
-      else
-        render action: 'new'
-      end
-  end
-
-  # PATCH/PUT /analysts/1
-  # PATCH/PUT /analysts/1.json
-  def update
-    respond_to do |format|
-      if @analyst.update(analyst_params)
-        format.html { redirect_to @analyst, notice: 'Analyst was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @analyst.errors, status: :unprocessable_entity }
-      end
+    if @analyst.save
+      sign_in @analyst
+      flash[:success] = "Start Protecting Properties"
+      redirect_to @analyst
+    else
+      render action: 'new'
     end
   end
 
-  # DELETE /analysts/1
-  # DELETE /analysts/1.json
+  def update
+    if @analyst.update(analyst_params)
+      flash[:success] = "Analyst was successfully updated."
+      redirect_to @analyst
+    else
+      render action: 'edit'
+    end
+  end
+
   def destroy
     @analyst.destroy
     respond_to do |format|
@@ -69,4 +56,16 @@ class AnalystsController < ApplicationController
     def analyst_params
       params.require(:analyst).permit(:name, :email, :analyst, :password, :password_confirmation)
     end
-end
+
+    def signed_in_analyst
+      unless analyst_signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+    end
+
+    def correct_analyst
+      @analyst = Analyst.find(params[:id])
+      redirect_to(root_url) unless current_analyst?(@analyst)
+    end
+  end

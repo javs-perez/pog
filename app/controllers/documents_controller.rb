@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :signed_in_user
+  before_action :signed_in_user_or_analyst
   before_action :admin_user,    only: :destroy
 
   def create

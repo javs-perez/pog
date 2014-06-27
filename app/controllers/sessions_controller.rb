@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     else
     	if analyst && analyst.authenticate(params[:session][:password])
     		sign_in analyst
-    		redirect_back_or analyst
+    		redirect_back_or signin_analyst_path
     	else
     		flash.now[:error] = 'Invalid email/password combination'
     		render 'analysts/new'

@@ -10,8 +10,14 @@
       </h1>
     </section>
     <section>
-      <% if current_user.admin? && !current_user?(@user) %>
+      <% if current_analyst %>
+        <% if current_analyst.admin? %>
         <%= render 'shared/document_form' %>
+        <% end %>
+      <% else %>
+        <% if current_user.admin? %>
+        <%= render 'shared/document_form' %>
+        <% end %>
       <% end %>
     </section>
   </aside>

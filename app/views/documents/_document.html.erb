@@ -38,10 +38,18 @@
   <span class="timestamp">
     Created <%= time_ago_in_words(document.created_at) %> ago.
   </span>
-  <% if current_user.admin? && !current_user?(@user) %>
-    <%= link_to "delete", document, method: :delete,
+  <% if current_user %>
+    <% if current_user.admin? && !current_user?(@user) %>
+      <%= link_to "delete", document, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: document.toi.upcase %>
+    <% end %>
+  <% else %>
+    <% if current_analyst.admin? %>
+      <%= link_to "delete", document, method: :delete,
+                                      data: { confirm: "You sure?" },
+                                      title: document.toi.upcase %> 
+    <% end %>
   <% end %>
 </div>
 </div>
