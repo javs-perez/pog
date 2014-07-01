@@ -1,5 +1,5 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
+<header class="navbar navbar-fixed-top navbar-pog">
+  <div class="navbar-brand">
     <div class="container">
       <%= link_to "Property On Guard", root_path, id: "logo" %>
       <nav>
@@ -10,6 +10,7 @@
             <% if analyst_signed_in? %>
               <li><%= link_to "Users", users_path %></li>
               <li><%= link_to "Analysts", analysts_path %></li>
+              <li><%= link_to "Properties", properties_path %></li>
             <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -1,6 +1,11 @@
 class PropertiesController < ApplicationController
-  before_action :signed_in_user_or_analyst, [:show, :create, :destroy]
+  before_action :signed_in_analyst, only: :index
+  before_action :signed_in_user_or_analyst, only: [:show, :create, :destroy]
   before_action :correct_user, only: :destroy
+
+  def index
+    @properties = Property.paginate(page: params[:page])
+  end
 
   def create
     @property = current_user.properties.build(property_params)

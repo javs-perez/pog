@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   	@document = Document.new(document_params)
     if @document.save
       flash[:success] = "Document created!"
-      redirect_to root_url
+      redirect_to properties_path
     else
       redirect_to root_url
     end

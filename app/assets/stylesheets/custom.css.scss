@@ -64,6 +64,10 @@ p {
 
 
 /* header */
+$bgDefault      : #0073ff;
+$bgHighlight    : #aaff00;
+$colDefault     : #fcfcfb;
+$colHighlight   : #0073ff;
 
 #logo {
   float: left;
@@ -81,11 +85,16 @@ p {
   }
 }
 
-.navbar-default2 {
-background-color: #2c3e50;
-border-color: transparent;
+.navbar-pog {
+  background-color: $bgDefault;
 }
 
+.navbar .nav > li > a {
+  float: none;
+  padding: 10px 15px 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
 /* footer */
 
 footer {
@@ -182,11 +191,11 @@ input {
 
 .users {
   list-style: none;
-  margin: 0;
+  margin: 10px;
   li {
     overflow: auto;
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    padding: 25px 10px 10px 10px;
+    border-bottom: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
     }
@@ -220,3 +229,7 @@ aside {
     margin-bottom: 5px;
   }
 }
+
+
+
+/* Navbar */

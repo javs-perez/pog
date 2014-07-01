@@ -1,0 +1,10 @@
+<% provide(:title, 'All Properties') %>
+<h1>All Properties</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @properties.reverse %>
+</ul>
+
+<%= will_paginate %>
