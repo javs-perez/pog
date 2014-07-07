@@ -4,7 +4,8 @@ class Document < ActiveRecord::Base
 
 	default_scope -> { order('created_at DESC')}
 	has_attached_file :record
-	validates_attachment :record, content_type: { content_type: ["application/pdf", "application/tif", "imgage/tif"] }
+	# validates_attachment :record, content_type: { content_type: "application/pdf" }
+	validates_attachment :record, content_type: { content_type: ["application/pdf", "image/jpeg", "image/gif", "image/png"] }
 	validates :property_id, 	presence: true
 	validates :toi, 					presence: true, length: { maximum: 5 }
 	validates :date_recorded, presence: true
