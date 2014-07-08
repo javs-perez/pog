@@ -7,5 +7,10 @@
     <%= f.text_field :state, 		placeholder: "State" %>
     <%= f.text_field :zip, 			placeholder: "Zip" %>
   </div>
-  <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+					data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+					data-description="A month's subscription"
+					data-amount="999"></script>
+ 
 <% end %>
+

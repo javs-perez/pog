@@ -1,11 +1,12 @@
 class Document < ActiveRecord::Base
 	belongs_to :property
-	# before_post_process :skip_for_pdf
+
 
 	default_scope -> { order('created_at DESC')}
+	
 	has_attached_file :record
-	# validates_attachment :record, content_type: { content_type: "application/pdf" }
-	validates_attachment :record, content_type: { content_type: ["application/pdf", "image/jpeg", "image/gif", "image/png"] }
+	validates_attachment :record, content_type: { content_type: ["application/pdf", "image/tif", "image/tiff"] }
+
 	validates :property_id, 	presence: true
 	validates :toi, 					presence: true, length: { maximum: 5 }
 	validates :date_recorded, presence: true
@@ -20,7 +21,4 @@ class Document < ActiveRecord::Base
 			self.property.touch
 		end
 
-		def skip_for_pdf
-    ! %w(application/pdf).include?(record_content_type)
-  	end
 end

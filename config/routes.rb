@@ -4,7 +4,8 @@ PogApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy] 
   resources :properties, only: [:index, :create, :destroy, :show]
   resources :documents, only: [:create, :destroy, :show]
-
+  resources :charges
+  
   root 'static_pages#home'
   match '/signup',          to: 'users#new',               via: 'get'
   match '/signin',          to: 'sessions#new',            via: 'get'

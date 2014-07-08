@@ -11,6 +11,8 @@ gem 'faker', '1.1.2'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'aws-sdk'
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Use sqlite3 as the database for Active Record
 group :development do
 	gem 'sqlite3', '1.3.8'
