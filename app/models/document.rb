@@ -8,7 +8,7 @@ class Document < ActiveRecord::Base
 	validates_attachment :record, content_type: { content_type: ["application/pdf", "image/tif", "image/tiff"] }
 
 	validates :property_id, 	presence: true
-	validates :toi, 					presence: true, length: { maximum: 5 }
+	validates :toi, 					presence: true, length: { maximum: 15 }
 	validates :date_recorded, presence: true
 	validates :cfn, 					presence: true
 	validates :county, 				presence: true
