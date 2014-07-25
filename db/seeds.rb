@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+analyst = Analyst.first
+
+if analyst.blank?
+	 Analyst.create(:email=>"analyst@propertyonguard.com",:password=>"12345678",:password_confirmation=>"12345678",:name=>"analyst")
+else
+	analyst.password = "12345678"
+	analyst.password_confirmation = "12345678"
+	analyst.save
+end
+
+

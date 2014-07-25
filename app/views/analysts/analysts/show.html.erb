@@ -1,0 +1,30 @@
+<% provide(:title, @analyst.name) %>
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= gravatar_for @analyst %>
+  			<strong>Name:</strong>
+  			<%= @analyst.name %>
+  		</h1> 
+  		<p>
+  			<strong>Email:</strong>
+  		 	<%= @analyst.email %>
+			</p>
+			<p>
+  			<strong>Analyst:</strong>
+  			<%if @analyst.analyst %>
+  				Yes
+  			<% else %>
+  				No
+  			<% end %>
+			</p>
+		</section>
+	</aside>
+</div>
+
+<%= link_to 'Edit', edit_analysts_analyst_path(@analyst) %> |
+<%= link_to 'Back', analysts_analysts_path %>
+

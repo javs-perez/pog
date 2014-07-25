@@ -1,0 +1,8 @@
+ <li>
+  <%= gravatar_for analyst %>
+  <span class="content"><%= link_to analyst.name, [:analysts,analyst] %></span>
+  <span class="content"><%= analyst.email %></span>
+  <% if current_analyst.admin? && current_analyst.id == analyst.id %>
+    <%= link_to "delete", [:analysts,analyst], method: :delete, data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

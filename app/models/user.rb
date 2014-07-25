@@ -1,33 +1,39 @@
 class User < ActiveRecord::Base
+
+	devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
 	has_many :properties, dependent: :destroy
 
 	before_save { self.email = email.downcase }
-	before_create :create_remember_token
 	
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
 	
-	validates :name, presence: true, length: { maximum: 50 }
-	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-	validates :password, length: { minimum: 6 }
-	
-	has_secure_password
+	#validates :name, presence: true, length: { maximum: 50 }
 
-	def User.new_remember_token
-    SecureRandom.urlsafe_base64
+
+	def self.find_for_facebook_or_google_oauth(auth, signed_in_resource=nil)
+ 	  user_identity = UserIdentity.find_by_provider_and_uid(auth.provider,auth.uid)
+    if user_identity.blank?
+      user = User.find_by_email(auth[:extra][:raw_info][:email]) if !auth[:extra].blank? && !auth[:extra][:raw_info].blank? && !auth[:extra][:raw_info][:email].blank?
+      user_identity = UserIdentity.create(:provider=>auth.provider,:uid=>auth.uid,:user_id=>user.id) unless user.blank?
+    end  
+    return user_identity.blank? ? nil : user_identity.user
   end
 
-  def User.digest(token)
-    Digest::SHA1.hexdigest(token.to_s)
+  def self.new_with_session(params, session)
+    super.tap do |user|          
+      if data = session["devise.data"] && session["devise.data"]["extra"]["raw_info"]      
+        user.email = data["email"] if user.email.blank?
+      end
+    end
   end
+
+	
+
 
   def feed
   	Property.where("user_id = ?", id)
   end
   
-  private
-
-    def create_remember_token
-      self.remember_token = User.digest(User.new_remember_token)
-    end
+ 
 	
 end

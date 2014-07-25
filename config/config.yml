@@ -1,0 +1,10 @@
+development:
+  facebook_api_id: "265251857011466"
+  facebook_api_key: "a7a2a314671cb65733b1f2b7b225f70f"
+  google_api_id: "75778231620-hkrqgsbhqdbc5a7fr6qc2u6i6deervft.apps.googleusercontent.com"
+  google_api_key: "Kz2okBsegyML9xGgcKVnIsZN"
+production:
+  facebook_api_id: "510790819054908"
+  facebook_api_key: "ce24a4da7254a30c6237ca5168ce5bc6"
+  google_api_id: "506516795332-5ta6ggfshj0ej0t3jujhck2s17hg1hdv.apps.googleusercontent.com"
+  google_api_key: "AIzaSyBu6N_3J3tbck726fibJx42vtY-GZO7O_g"

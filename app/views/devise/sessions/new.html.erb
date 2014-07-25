@@ -1,0 +1,18 @@
+<% provide(:title, "Sign in") %>
+<h1>Sign in</h1>
+<div class="row">
+  <div class="span6 offset3">
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		      <%= f.label :email %>
+		      <%= f.text_field :email %>
+		      <%= f.label :password %>
+		      <%= f.password_field :password %>
+		     <%= f.submit "Sign in",:class=>"btn btn-large btn-primary" %>
+		<% end %>
+		<%= link_to("Sign in with Facebook".html_safe,user_omniauth_authorize_path("facebook"),:class=>"btn btn-default btn-sm btn-social-facebook") %>
+   		 <%= link_to("Sign in with Google".html_safe,user_omniauth_authorize_path("google_oauth2"),:class=>"btn btn-default btn-sm btn-social-googleplus") %>
+
+	</div>
+</div>
+
+
