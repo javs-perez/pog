@@ -1,8 +1,8 @@
 class Analysts::AnalystsController < ApplicationController
-  before_action :set_analyst, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_analyst!, only: [:index, :edit, :update]
-  before_action :correct_analyst, only: [:edit, :update]
-
+  before_action :authenticate_analyst!
+  before_action :set_analyst, only: [:show,:destroy]
+  before_action :set_current_analyst, only: [:edit_profile,:update,:profile]
+  
   def index
     @analysts = Analyst.paginate(page: params[:page])
   end
@@ -10,31 +10,17 @@ class Analysts::AnalystsController < ApplicationController
   def show
   end
 
-  def new
-    @analyst = Analyst.new
+  def edit_profile
   end
 
-  def edit
-  end
-
-  def create
-    @analyst = Analyst.new(analyst_params)
-
-    if @analyst.save
-      sign_in @analyst
-      flash[:success] = "Start Protecting Properties"
-      redirect_to @analyst
-    else
-      render action: 'new'
-    end
-  end
 
   def update
     if @analyst.update(analyst_params)
+      sign_in @analyst, :bypass => true
       flash[:success] = "Analyst was successfully updated."
-      redirect_to @analyst
+      redirect_to [:analysts,@analyst]
     else
-      render action: 'edit'
+      render action: 'edit_profile'
     end
   end
 
@@ -46,10 +32,17 @@ class Analysts::AnalystsController < ApplicationController
     end
   end
 
+  def profile
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_analyst
       @analyst = Analyst.find(params[:id])
+    end
+
+    def set_current_analyst
+      @analyst = current_analyst
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -57,9 +50,4 @@ class Analysts::AnalystsController < ApplicationController
       params.require(:analyst).permit(:name, :email, :analyst, :password, :password_confirmation)
     end
 
-
-    def correct_analyst
-      @analyst = Analyst.find(params[:id])
-      redirect_to(root_url) unless current_analyst.id= @analyst.id
-    end
   end

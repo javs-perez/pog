@@ -9,6 +9,11 @@
         <%= @property.zip             %>
       </h1>
     </section>
+    <section>
+      <% if current_analyst.admin? %>
+        <%= render 'shared/document_form' %>
+      <% end %>
+    </section>
   </aside>
   <div class="span8">
     <% if @property.documents.any? %>

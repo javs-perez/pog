@@ -8,7 +8,7 @@
         <span class="content">State</span>
         <span class="content">Zip</span>
         <span class="timestamp">Updated at</span>
-        <% if current_user?(property.user) %>
+        <% if current_user == property.user %>
           <span class="timestamp">Options</span>
         <% end %>
       </li>
@@ -17,13 +17,13 @@
   <div style="float: left; width: 33%;">
     <ul>
       <li>
-        <span class="content"><%= link_to property.user.name, property.user        %></span>
-        <span class="content"><%= link_to property.address, property      %></span>
+        <span class="content"><%= link_to property.user.name, [:analysts, property.user]       %></span>
+        <span class="content"><%= link_to property.address, [:analysts, property]       %></span>
         <span class="content"><%= property.city.titleize %></span>
         <span class="content"><%= property.state.upcase %></span>
         <span class="content"><%= property.zip %></span>
         <span class="timestamp"><%= time_ago_in_words(property.updated_at) %>ago. </span>
-        <% if current_user?(property.user) %>
+        <% if current_user == property.user  %>
           <span class="timestamp"><%= link_to "delete", property, method: :delete,
                                                                   data: { confirm: "You sure?" },
                                                                   title: property.address %>

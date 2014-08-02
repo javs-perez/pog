@@ -1,0 +1,7 @@
+ <li>
+  <%= gravatar_for user %>
+  <%= link_to user.name,[:analysts, user] %>
+  <% if current_analyst.admin? %>
+    | <%= link_to "delete", [:analysts, user], method: :delete, data: { confirm: "You sure?" } %>
+  <% end %>
+</li>

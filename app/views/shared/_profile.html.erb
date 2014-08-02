@@ -12,11 +12,11 @@
     <% if @user.properties.any? %>
       <h3>Properties (<%= @user.properties.count %>)</h3>
       <ol class="properties">
-        <%= render @properties %>
+        <%= render :partial=>"shared/property",:collection=>@properties %>
       </ol>
       <%= will_paginate @properties %>
     <% else %>
-    	<h3>You are not protecting any properties at the moment</h3>
+    	<h3><%=@user.name%> is not protecting any properties at the moment</h3>
     <% end %>
   </div>
 </div>

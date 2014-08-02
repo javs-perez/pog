@@ -1,22 +1,17 @@
-<% if user_signed_in? || analyst_signed_in?  %>
+<% if user_signed_in?   %>
   <div class="row">
     <aside class="span4">
       <section>
-        <%= render 'shared/user_info' if user_signed_in?%>
-        <%= render 'shared/analyst_info' if analyst_signed_in?%>
+        <%= render 'shared/user_info' %>
       </section>
-      <% if user_signed_in? %>
         <section>
           <%= render 'shared/property_form' %>
         </section>
-      <% end %>  
     </aside>
-    <% if user_signed_in? %>
-    <div class="span8">
-      <h3>Property Feed</h3>
-      <%= render 'shared/feed' %>
-    </div>
-    <% end %>
+      <div class="span8">
+        <h3>Property Feed</h3>
+        <%= render 'shared/feed' %>
+      </div>
   </div>
 <% else %>
   <div class="center hero-unit">
@@ -27,8 +22,9 @@
       Every home faces property fraud.
       Property On Guard helps prevent it.
     </h2>
-
-    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+    <% unless analyst_signed_in? %>
+      <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+    <%end %>  
   </div>
 
   <%= link_to image_tag("pog.gif", alt: "POG"), 'http://www.propertyonguard.com/' %>

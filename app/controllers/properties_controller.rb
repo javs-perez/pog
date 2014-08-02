@@ -1,11 +1,6 @@
 class PropertiesController < ApplicationController
-  before_action :signed_in_analyst, only: :index
-  before_action :signed_in_user_or_analyst, only: [:show, :create, :destroy]
+  before_action :authenticate_user!
   before_action :correct_user, only: :destroy
-
-  def index
-    @properties = Property.paginate(page: params[:page])
-  end
 
   def create
     @property = current_user.properties.build(property_params)
@@ -18,15 +13,15 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def destroy
-    @property.destroy
-    redirect_to root_url
-  end
-
   def show
     @property = Property.find(params[:id])
     @documents = @property.documents.paginate(page: params[:page])
-    @document = Document.new
+  end
+
+
+  def destroy
+    @property.destroy
+    redirect_to root_url
   end
 
 
@@ -36,8 +31,8 @@ class PropertiesController < ApplicationController
       params.require(:property).permit(:address, :city, :state, :zip)
     end
 
-    def correct_user
-      @property = current_user.properties.find_by(id: params[:id])
-      redirect_to root_url if @property.nil?
-    end
+  def correct_user
+    @property = current_user.properties.find_by(id: params[:id])
+    redirect_to root_url if @property.nil?
+  end
 end

@@ -1,0 +1,22 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="span8">
+    <% if @user.properties.any? %>
+      <h3>Properties (<%= @user.properties.count %>)</h3>
+      <ol class="properties">
+        <%= render @properties %>
+      </ol>
+      <%= will_paginate @properties %>
+    <% else %>
+    	<h3><%=@user.name%> is not protecting any properties at the moment</h3>
+    <% end %>
+  </div>
+</div>

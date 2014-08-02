@@ -9,10 +9,11 @@
 analyst = Analyst.first
 
 if analyst.blank?
-	 Analyst.create(:email=>"analyst@propertyonguard.com",:password=>"12345678",:password_confirmation=>"12345678",:name=>"analyst")
+	 Analyst.create(:email=>"analyst@propertyonguard.com",:password=>"12345678",:password_confirmation=>"12345678",:name=>"analyst",:admin=>1)
 else
 	analyst.password = "12345678"
 	analyst.password_confirmation = "12345678"
+	analyst.admin = 1
 	analyst.save
 end
 

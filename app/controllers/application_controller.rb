@@ -21,8 +21,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit!}
   end
 
- #  def current_property
-	# 	@current_property ||= Property.find_by(current_user.properties.find(params[:id]))
-	# end
 
 end

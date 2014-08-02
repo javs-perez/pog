@@ -2,13 +2,13 @@ class User < ActiveRecord::Base
 
 	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook,:google_oauth2]
-	has_many :properties, dependent: :destroy
+	
+  has_many :properties, dependent: :destroy
+  has_many :user_identities, dependent: :destroy
 
 	before_save { self.email = email.downcase }
 	
 	
-	#validates :name, presence: true, length: { maximum: 50 }
-
 
 	def self.find_for_facebook_or_google_oauth(auth, signed_in_resource=nil)
  	  user_identity = UserIdentity.find_by_provider_and_uid(auth.provider,auth.uid)

@@ -1,8 +1,8 @@
 APP_CONFIG = YAML.load_file("#{Rails.root}/config/config.yml")
 
 Rails.configuration.stripe = {
-	:publishable_key => ENV['PUBLISHABLE_KEY'],
-	:secret_key			 => ENV['SECRET_KEY']
+	:publishable_key => "pk_test_rxdj4eEw8FMoGRC5PjUmn8dg",#ENV['PUBLISHABLE_KEY'],
+	:secret_key			 => "sk_test_R5HtlzZkLxTllazo8ppnyZQs"#ENV['SECRET_KEY']
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]

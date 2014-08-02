@@ -2,22 +2,28 @@ PogApp::Application.routes.draw do
 
 
   devise_for :users,:controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-
-
   devise_for :analysts, :controllers => { :sessions => "analysts/sessions",:registrations => "analysts/registrations" }
-  
-
-  #
-
-  resources :properties, only: [:index, :create, :destroy, :show]
-  resources :documents, only: [:create, :destroy, :show]
-  resources :charges
+  resources :properties, only: [:create, :destroy, :show]
   
   root 'static_pages#home'
 
   get '/help',            to: 'static_pages#help'
   get '/about',           to: 'static_pages#about'
   get '/contact',         to: 'static_pages#contact'
+  get '/profile/:id',     to: 'static_pages#profile',as: :profiles
+  get '/profile',         to: 'static_pages#own_profile',as: :profile
+
+  namespace :analysts do
+    root :to => "analysts#index"
+    get '/profile',to: 'analysts#profile'
+    get '/edit_profile',to: 'analysts#edit_profile'
+    get '/upload_document',to: 'properties#upload_document',as: :upload_document
+    get '/document/:id',to: 'properties#document',as: :document
+    resources :analysts, only: [:index,:update, :destroy, :show]
+    resources :users
+    resources :properties, only: [:index, :show]
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -67,10 +73,5 @@ PogApp::Application.routes.draw do
   #   resources :photos, concerns: :toggleable
 
   # Example resource route within a namespace:
-    namespace :analysts do
-      resources :analysts
-      # Directs /admin/products/* to Admin::ProductsController
-      # (app/controllers/admin/products_controller.rb)
-      #resources :products
-    end
+
 end

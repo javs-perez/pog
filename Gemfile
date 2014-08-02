@@ -74,4 +74,4 @@ gem "omniauth-google-oauth2"
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+ gem 'debugger', group: [:development, :test]
