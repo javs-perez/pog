@@ -30,7 +30,7 @@
 <div style="float: right; width: 33%;"
   <ul>
     <li>
-      <span class="content"><%= link_to "Download document", document.record.url(:original)%></span>
+      <span class="content"><%= link_to "Download document", analysts_document_path(document)%></span>
     </li>
   </ul>
 </div>
@@ -38,18 +38,10 @@
   <span class="timestamp">
     Created <%= time_ago_in_words(document.created_at) %> ago.
   </span>
-  <% if current_user %>
-    <% if current_user.admin? && !current_user?(@user) %>
-      <%= link_to "delete", document, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: document.toi.upcase %>
-    <% end %>
-  <% else %>
     <% if current_analyst.admin? %>
-      <%= link_to "delete", document, method: :delete,
+      <%= link_to "delete",analysts_destroy_document_path(document), method: :delete,
                                       data: { confirm: "You sure?" },
                                       title: document.toi.upcase %> 
     <% end %>
-  <% end %>
 </div>
 </div>

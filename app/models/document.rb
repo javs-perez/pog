@@ -4,8 +4,8 @@ class Document < ActiveRecord::Base
 
 	default_scope -> { order('created_at DESC')}
 	
-	has_attached_file :record
-	validates_attachment :record, content_type: { content_type: ["application/pdf", "image/tif", "image/tiff"] }
+	has_attached_file :record , :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+	validates_attachment :record, content_type: { content_type: ["application/pdf", "image/tif", "image/tiff","image/jpg","image/JPG","image/jpeg"] }
 
 	validates :property_id, 	presence: true
 	validates :toi, 					presence: true, length: { maximum: 15 }

@@ -16,6 +16,7 @@ class PropertiesController < ApplicationController
   def show
     @property = Property.find(params[:id])
     @documents = @property.documents.paginate(page: params[:page])
+    @document =Document.new
   end
 
 

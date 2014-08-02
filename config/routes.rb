@@ -17,8 +17,9 @@ PogApp::Application.routes.draw do
     root :to => "analysts#index"
     get '/profile',to: 'analysts#profile'
     get '/edit_profile',to: 'analysts#edit_profile'
-    get '/upload_document',to: 'properties#upload_document',as: :upload_document
-    get '/document/:id',to: 'properties#document',as: :document
+    post '/upload_document',to: 'properties#upload_document',as: :upload_document
+    get '/download_document/:id',to: 'properties#download_document',as: :document
+    delete "/destroy_document/:id",to: 'properties#destroy_document',as: :destroy_document
     resources :analysts, only: [:index,:update, :destroy, :show]
     resources :users
     resources :properties, only: [:index, :show]

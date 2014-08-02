@@ -8,6 +8,7 @@
         <%= @property.state.upcase    %>
         <%= @property.zip             %>
       </h1>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@property.latitude}%2C#{@property.longitude}" %>
     </section>
     <section>
       <% if current_analyst.admin? %>
@@ -19,7 +20,7 @@
     <% if @property.documents.any? %>
       <h3>Documents (<%= @property.documents.count %>)</h3>
       <ol class="properties">
-        <%= render @documents %>
+        <%= render :partial=>"shared/document",:collection=> @documents %>
       </ol>
       <%= will_paginate @documents %>
     <% else %>
