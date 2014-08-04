@@ -12,6 +12,7 @@ PogApp::Application.routes.draw do
   get '/contact',         to: 'static_pages#contact'
   get '/profile/:id',     to: 'static_pages#profile',as: :profiles
   get '/profile',         to: 'static_pages#own_profile',as: :profile
+  get '/download_document/:id',to: 'properties#download_document',as: :document
 
   namespace :analysts do
     root :to => "analysts#index"
