@@ -20,7 +20,7 @@
     <% if @property.documents.any? %>
       <h3>Documents (<%= @property.documents.count %>)</h3>
       <ol class="properties">
-        <%= render :partial=>"shared/document",:collection=> @documents %>
+        <%= render :partial=>"document",:collection=> @documents %>
       </ol>
       <%= will_paginate @documents %>
     <% else %>

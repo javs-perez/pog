@@ -38,5 +38,10 @@
   <span class="timestamp">
     Created <%= time_ago_in_words(document.created_at) %> ago.
   </span>
+    <% if current_analyst.admin? %>
+      <%= link_to "delete",analysts_destroy_document_path(document), method: :delete,
+                                      data: { confirm: "You sure?" },
+                                      title: document.toi.upcase %> 
+    <% end %>
 </div>
 </div>
