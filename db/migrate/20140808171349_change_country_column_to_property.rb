@@ -1,5 +1,5 @@
 class ChangeCountryColumnToProperty < ActiveRecord::Migration
   def change
-  	rename_column :properties, :county, :county
+  	rename_column :properties, :country, :county
   end
 end
