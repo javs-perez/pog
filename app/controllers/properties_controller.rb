@@ -1,6 +1,7 @@
 class PropertiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:destroy,:download_document]
+  before_action :correct_user, only: [:destroy]
+
 
   def create
     @property = current_user.properties.build(property_params)
@@ -25,15 +26,17 @@ class PropertiesController < ApplicationController
     redirect_to root_url
   end
 
-
-   def download_document
+      
+  def download_document
+    @document =  Document.find(params[:id])
     send_file @document.record.path
   end
+  
 
   private
 
     def property_params
-      params.require(:property).permit(:address, :city, :state, :zip)
+      params.require(:property).permit(:address, :city, :state, :zip, :folio, :country)
     end
 
   def correct_user

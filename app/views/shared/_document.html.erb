@@ -30,7 +30,13 @@
 <div style="float: right; width: 33%;"
   <ul>
     <li>
-      <span class="content"><%= link_to "Download document", analysts_document_path(document)%></span>
+      <span class="content">
+        <% if current_user %>      
+          <%= link_to "Download document", document_path(document)%>
+        <%else%>
+          <%= link_to "Download document", analysts_document_path(document)%>
+        <%end%>
+      </span>
     </li>
   </ul>
 </div>

@@ -8,11 +8,13 @@ class Property < ActiveRecord::Base
 	validates :city, presence: true
 	validates :state, presence: true
 	validates :zip, presence: true, length: { maximum: 5 }
+  validates :folio, presence: true
+  validates :country, presence: true
 
 	geocoded_by :full_street_address   # can also be an IP address
 	after_validation :geocode          # auto-fetch coordinates
-
+  
 	def full_street_address
-	  [address, city, state,zip].compact.join(', ')
+	  [address, city, state,zip,folio,country].compact.join(', ')
 	end
 end

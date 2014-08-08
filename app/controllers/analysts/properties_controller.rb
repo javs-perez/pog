@@ -17,6 +17,7 @@ class Analysts::PropertiesController < ApplicationController
   def upload_document
     @document = Document.new(document_params)
     if @document.save
+      UserMailer.document_upload_notification(@document).deliver
       flash[:success] = "Document created!"
       redirect_to analysts_property_path(@document.property)
     else  

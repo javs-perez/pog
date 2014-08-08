@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <b>Hi <%= @document.property.user.name %>,</b>
+    <p>
+      There is a document was uploaded on your property.<br>
+    </p>
+    <p>To visit the document please login to <%= link_to "Sign_in", new_user_session_path() %></p>
+    <br>
+    Thanks
+  </body>
+</html>

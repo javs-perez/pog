@@ -6,6 +6,8 @@
     <%= f.text_field :city, 		placeholder: "City" %>
     <%= f.text_field :state, 		placeholder: "State" %>
     <%= f.text_field :zip, 			placeholder: "Zip" %>
+    <%= f.text_field :folio,    placeholder: "folio" %>
+    <%= f.text_field :country,  placeholder: "country" %>
   </div>
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 					data-key="<%= Rails.configuration.stripe[:publishable_key] %>"

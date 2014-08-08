@@ -7,7 +7,11 @@
         <span class="content">City</span>
         <span class="content">State</span>
         <span class="content">Zip</span>
+         <span class="content">Folio</span>
+          <span class="content">Country</span>
         <span class="timestamp">Updated at</span>
+
+
         <% if current_user == property.user %>
           <span class="timestamp">Options</span>
         <% end %>
@@ -22,6 +26,9 @@
         <span class="content"><%= property.city.titleize %></span>
         <span class="content"><%= property.state.upcase %></span>
         <span class="content"><%= property.zip %></span>
+        <span class="content"><%= property.folio %></span>
+        <span class="content"><%= property.country %></span>
+
         <span class="timestamp"><%= time_ago_in_words(property.updated_at) %>ago. </span>
         <% if current_user == property.user  %>
           <span class="timestamp"><%= link_to "delete", property, method: :delete,
