@@ -27,7 +27,7 @@
         <span class="content"><%= property.state.upcase %></span>
         <span class="content"><%= property.zip %></span>
         <span class="content"><%= property.folio %></span>
-        <span class="content"><%= property.country %></span>
+        <span class="content"><%= property.county %></span>
 
         <span class="timestamp"><%= time_ago_in_words(property.updated_at) %>ago. </span>
         <% if current_user == property.user  %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807094447) do
+ActiveRecord::Schema.define(version: 20140808171349) do
 
   create_table "analysts", force: true do |t|
     t.string   "name"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20140807094447) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "folio"
-    t.string   "country"
+    t.string   "county"
   end
 
   add_index "properties", ["user_id", "updated_at"], name: "index_properties_on_user_id_and_updated_at", using: :btree
