@@ -15,6 +15,6 @@ class Property < ActiveRecord::Base
 	after_validation :geocode          # auto-fetch coordinates
   
 	def full_street_address
-	  [address, city, state,zip,folio,country].compact.join(', ')
+	  [address, city, state, zip].compact.join(', ')
 	end
 end
