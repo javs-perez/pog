@@ -33,7 +33,8 @@ class Analysts::PropertiesController < ApplicationController
   
 
   def download_document
-    send_file @document.record.url
+    data = open(@document.record.url)    
+    send_data data.read, :type => data.content_type, :x_sendfile => true
   end
 
 

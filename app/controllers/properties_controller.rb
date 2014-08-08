@@ -28,8 +28,9 @@ class PropertiesController < ApplicationController
 
       
   def download_document
-    @document =  Document.find(params[:id])
-    send_file @document.record.url
+    @document = Document.find(params[:id])
+    data = open(@document.record.url)    
+    send_data data.read, :type => data.content_type, :x_sendfile => true
   end
   
 
