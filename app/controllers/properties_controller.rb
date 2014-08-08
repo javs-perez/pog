@@ -29,7 +29,7 @@ class PropertiesController < ApplicationController
       
   def download_document
     @document =  Document.find(params[:id])
-    send_file @document.record.path
+    send_file @document.record.url
   end
   
 

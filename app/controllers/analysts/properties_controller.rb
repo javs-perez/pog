@@ -33,7 +33,7 @@ class Analysts::PropertiesController < ApplicationController
   
 
   def download_document
-    send_file @document.record.path
+    send_file @document.record.url
   end
 
 
