@@ -4,7 +4,7 @@ class Analysts::AnalystsController < ApplicationController
   before_action :set_current_analyst, only: [:edit_profile,:update,:profile]
   
   def index
-    @analysts = Analyst.paginate(page: params[:page])
+    @analysts = Analyst.paginate(page: params[:page], :per_page => 10)
   end
 
   def show

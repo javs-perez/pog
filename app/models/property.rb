@@ -4,11 +4,11 @@ class Property < ActiveRecord::Base
 
 	default_scope -> { order('updated_at DESC') }
 	validates :user_id, presence: true
-	validates :address, presence: true, length: { maximum: 140 }
+	validates :address, uniqueness: true, presence: true, length: { maximum: 140 }
 	validates :city, presence: true
 	validates :state, presence: true
 	validates :zip, presence: true, length: { maximum: 5 }
-  validates :folio, presence: true
+  validates :folio, uniqueness: true, presence: true
   validates :county, presence: true
 
 	geocoded_by :full_street_address   # can also be an IP address
