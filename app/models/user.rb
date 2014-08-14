@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :user_identities, dependent: :destroy
 
 	before_save { self.email = email.downcase }
-	
+  has_many :follows, :dependent => :destroy
 	
 
 	def self.find_for_facebook_or_google_oauth(auth, signed_in_resource=nil)

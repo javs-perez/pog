@@ -4,13 +4,21 @@ class PropertiesController < ApplicationController
 
 
   def create
-    @property = current_user.properties.build(property_params)
-    if @property.save
-      flash[:success] = "Property protected!"
+  
+   @p =   Property.where(:address => params[:property][:address] , :city => params[:property][:city] , :state => params[:property][:state] , :zip => params[:property][:zip])
+    if !@p.blank?
+      Follow.create(:user_id => current_user.id , :property_id => @p.first.id)
       redirect_to root_url
     else
-      @feed_items = []
-      render 'static_pages/home'
+      @property = current_user.properties.build(property_params)
+        if @property.save
+          flash[:success] = "Property protected!"
+          redirect_to root_url
+          
+        else
+          @feed_items = []
+          render 'static_pages/home'
+        end
     end
   end
 
